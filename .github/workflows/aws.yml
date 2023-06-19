@@ -6,7 +6,6 @@ on:
       - main
 
 env:
-  TARGET_PATH: 'BE_Webshop'
   EC2_HOST: ${{ secrets.EC2_HOST }}
   EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
   EC2_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
@@ -32,7 +31,7 @@ jobs:
         distribution: 'adopt'
     
     - name: Build JAR
-      run: cd ${{ env.TARGET_PATH }} && mvn package -DskipTests
+      run: mvn package -DskipTests
   
     - name: Login to Docker Hub
       uses: docker/login-action@v2
