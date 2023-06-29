@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      -"/src/**"
 
 env:
   RES_NAME: taeyang02/hello-world:latest
@@ -57,4 +59,4 @@ jobs:
           docker ps -a --filter "ancestor=taeyang02/hello-world" --format "{{.ID}}" | xargs -r docker rm -f
           docker images --filter "reference=taeyang02/hello-world:latest" --format "{{.ID}}" | xargs -r docker rmi -f
           docker pull ${{ env.RES_NAME }}
-          docker run -d -p 8080:8080 ${{ env.RES_NAME }}
+          docker run --name java1 -d -p 8080:8080 ${{ env.RES_NAME }}
